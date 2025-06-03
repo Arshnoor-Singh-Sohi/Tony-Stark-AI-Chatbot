@@ -17,7 +17,17 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+try:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        print("⚠️ WARNING: OPENAI_API_KEY not found - app will start but chat won't work")
+        client = None
+    else:
+        client = OpenAI(api_key=api_key)
+        print("✅ OpenAI client initialized successfully!")
+except Exception as e:
+    print(f"⚠️ OpenAI initialization failed: {e}")
+    client = None
 
 # EXACT ORIGINAL SYSTEM PROMPT - DO NOT MODIFY
 SYSTEM_PROMPT = """
@@ -77,6 +87,13 @@ FALLBACK_RESPONSES = {
 def generate_stark_response(message, conversation_id):
     """Generate Tony Stark's response with thinking steps - EXACT ORIGINAL LOGIC"""
     
+    if not client:
+        return [{
+            "step": "result", 
+            "content": "My arc reactor is offline! The genius needs an OpenAI API key to function. Check your environment variables, mortal.",
+            "final": True
+        }]
+
     # Get or create conversation
     if conversation_id not in conversations:
         conversations[conversation_id] = [{"role": "system", "content": SYSTEM_PROMPT}]
