@@ -428,8 +428,15 @@ def reset_conversation(conversation_id):
 # Vercel entry point
 app = app
 
-# Add this at the very end of your app.py file
+# # Add this at the very end of your app.py file
+# if __name__ == '__main__':
+#     print("🚀 Starting STARK AI...")
+#     print("🌐 Open your browser and go to: http://localhost:5000")
+#     app.run(debug=True, host='0.0.0.0', port=5000)
+
 if __name__ == '__main__':
-    print("🚀 Starting STARK AI...")
-    print("🌐 Open your browser and go to: http://localhost:5000")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Get port from environment variable (Railway sets this)
+    port = int(os.environ.get('PORT', 5000))
+    print(f"🚀 Starting STARK AI on port {port}...")
+    print("🌐 Railway will provide the public URL")
+    app.run(debug=False, host='0.0.0.0', port=port)
