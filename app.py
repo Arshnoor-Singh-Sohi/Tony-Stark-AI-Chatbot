@@ -154,7 +154,7 @@ def generate_stark_response(message, conversation_id):
     
     return steps
 
-# HTML content served directly (Vercel-friendly)
+# HTML content served directly (Vercel-friendly) - ORIGINAL CODE WITH MINIMAL MOBILE FIXES
 HTML_CONTENT = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,6 +195,13 @@ HTML_CONTENT = '''<!DOCTYPE html>
         code { font-family: 'Courier New', monospace; font-size: 14px; }
         pre code { color: #10b981 !important; background: none !important; padding: 0 !important; }
         code:not(pre code) { background-color: #374151; color: #fbbf24; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        
+        /* MINIMAL Mobile fixes only */
+        @media (max-width: 768px) {
+            .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+            pre { padding: 12px; font-size: 12px; }
+            code:not(pre code) { font-size: 12px; }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-black text-white relative overflow-hidden">
@@ -444,12 +451,6 @@ def reset_conversation(conversation_id):
 
 # Vercel entry point
 app = app
-
-# # Add this at the very end of your app.py file
-# if __name__ == '__main__':
-#     print("🚀 Starting STARK AI...")
-#     print("🌐 Open your browser and go to: http://localhost:5000")
-#     app.run(debug=True, host='0.0.0.0', port=5000)
 
 if __name__ == '__main__':
     # Get port from environment variable (Railway sets this)
