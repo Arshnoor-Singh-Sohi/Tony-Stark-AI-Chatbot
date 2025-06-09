@@ -201,6 +201,15 @@ HTML_CONTENT = '''<!DOCTYPE html>
             .scrollbar-thin::-webkit-scrollbar { width: 4px; }
             pre { padding: 12px; font-size: 12px; }
             code:not(pre code) { font-size: 12px; }
+            
+            /* Better mobile viewport */
+            body { min-height: 100vh; min-height: -webkit-fill-available; }
+            .h-\[calc\(100vh-200px\)\] { height: calc(100vh - 160px); }
+        }
+        
+        /* Better mobile scrolling */
+        @supports (-webkit-touch-callout: none) {
+            .h-\[calc\(100vh-200px\)\] { height: calc(100vh - 160px); }
         }
     </style>
 </head>
@@ -210,40 +219,40 @@ HTML_CONTENT = '''<!DOCTYPE html>
         <div id="particles"></div>
     </div>
     <div class="relative z-10 bg-black/80 backdrop-blur-md border-b border-red-500/30">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
+        <div class="max-w-6xl mx-auto px-2 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2 sm:space-x-3">
                 <div class="relative">
-                    <i data-lucide="shield" class="w-10 h-10 text-red-500"></i>
-                    <i data-lucide="zap" class="w-5 h-5 text-yellow-400 absolute -top-1 -right-1 animate-pulse"></i>
+                    <i data-lucide="shield" class="w-8 h-8 sm:w-10 sm:h-10 text-red-500"></i>
+                    <i data-lucide="zap" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 absolute -top-1 -right-1 animate-pulse"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">STARK AI</h1>
-                    <p class="text-xs text-gray-400">Genius-Level Assistant</p>
+                    <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">STARK AI</h1>
+                    <p class="text-xs text-gray-400 hidden sm:block">Genius-Level Assistant</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="text-sm text-gray-400">Arc Reactor Online</span>
+                <span class="text-xs sm:text-sm text-gray-400">Arc Reactor Online</span>
             </div>
         </div>
     </div>
-    <div class="relative z-10 max-w-6xl mx-auto px-4 py-6 h-[calc(100vh-200px)]">
+    <div class="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 py-3 sm:py-6 h-[calc(100vh-200px)]">
         <div class="bg-black/60 backdrop-blur-md rounded-lg border border-red-500/30 h-full overflow-hidden">
-            <div id="chatMessages" class="h-full overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-black">
-                <div id="welcomeMessage" class="text-center mt-20">
-                    <i data-lucide="brain" class="w-20 h-20 mx-auto text-red-500/50 mb-4"></i>
-                    <h2 class="text-2xl font-bold mb-2">Welcome to STARK AI</h2>
-                    <p class="text-gray-400">Ask me anything. I'll try not to be too condescending.</p>
+            <div id="chatMessages" class="h-full overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4 scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-black">
+                <div id="welcomeMessage" class="text-center mt-10 sm:mt-20">
+                    <i data-lucide="brain" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto text-red-500/50 mb-4"></i>
+                    <h2 class="text-xl sm:text-2xl font-bold mb-2">Welcome to STARK AI</h2>
+                    <p class="text-gray-400 px-4">Ask me anything. I'll try not to be too condescending.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="relative z-10 max-w-6xl mx-auto px-4 py-4">
-        <div class="bg-black/80 backdrop-blur-md rounded-lg border border-red-500/30 p-4">
-            <div class="flex items-center space-x-3">
-                <input type="text" id="messageInput" placeholder="Ask the genius anything..." class="flex-1 bg-transparent border border-red-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors" />
-                <button id="sendButton" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg p-3 transition-all duration-200 transform hover:scale-105">
-                    <i data-lucide="send" class="w-5 h-5"></i>
+    <div class="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 py-4">
+        <div class="bg-black/80 backdrop-blur-md rounded-lg border border-red-500/30 p-3 sm:p-4">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <input type="text" id="messageInput" placeholder="Ask the genius anything..." class="flex-1 bg-transparent border border-red-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors text-sm sm:text-base" />
+                <button id="sendButton" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg p-2 sm:p-3 transition-all duration-200 transform hover:scale-105">
+                    <i data-lucide="send" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
             </div>
         </div>
@@ -280,7 +289,7 @@ HTML_CONTENT = '''<!DOCTYPE html>
             const messageDiv = document.createElement('div');
             messageDiv.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`;
             const contentDiv = document.createElement('div');
-            contentDiv.className = `max-w-2xl px-4 py-3 rounded-lg ${role === 'user' ? 'bg-blue-600/20 border border-blue-500/50 text-blue-100' : 'bg-red-900/20 border border-red-500/50'}`;
+            contentDiv.className = `max-w-xs sm:max-w-2xl px-3 sm:px-4 py-2 sm:py-3 rounded-lg ${role === 'user' ? 'bg-blue-600/20 border border-blue-500/50 text-blue-100' : 'bg-red-900/20 border border-red-500/50'}`;
             
             if (role === 'assistant') {
                 const header = document.createElement('div');
@@ -290,7 +299,7 @@ HTML_CONTENT = '''<!DOCTYPE html>
             }
 
             const textDiv = document.createElement('div');
-            textDiv.className = 'whitespace-pre-wrap';
+            textDiv.className = 'whitespace-pre-wrap text-sm sm:text-base break-words';
             if (content.includes('```')) {
                 textDiv.innerHTML = formatCodeBlocks(content);
             } else {
@@ -341,17 +350,10 @@ HTML_CONTENT = '''<!DOCTYPE html>
                 if (response.ok) {
                     conversationId = data.conversation_id;
                     const steps = data.steps;
-                    const finalStep = steps.find(step => step.final || step.step === 'result');
-                    const finalResponse = finalStep ? finalStep.content : 'No response';
                     
-                    setTimeout(() => {
-                        removeThinkingLoader(thinkingElement);
-                        const responseElement = addMessage('assistant', finalResponse);
-                        isThinking = false;
-                        sendButton.disabled = false;
-                        messageInput.disabled = false;
-                        messageInput.focus();
-                    }, 1500);
+                    // Show thinking steps in real-time
+                    await showThinkingSteps(thinkingElement, steps);
+                    
                 } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
@@ -364,20 +366,102 @@ HTML_CONTENT = '''<!DOCTYPE html>
             }
         }
 
+        async function showThinkingSteps(thinkingElement, steps) {
+            const stepNames = {
+                'analyze': '🔍 ANALYZING',
+                'think': '🧠 THINKING', 
+                'validate': '✅ VALIDATING',
+                'output': '⚡ OUTPUTTING',
+                'result': '🎯 RESULT'
+            };
+            
+            let accumulatedSteps = [];
+            
+            // Show each thinking step accumulating
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+                const stepName = stepNames[step.step] || step.step.toUpperCase();
+                
+                if (step.step !== 'result') {
+                    // Add this step to accumulated steps
+                    accumulatedSteps.push({
+                        name: stepName,
+                        content: step.content
+                    });
+                    
+                    // Update thinking loader with all accumulated steps
+                    updateThinkingStepsAccumulated(thinkingElement, accumulatedSteps);
+                    await new Promise(resolve => setTimeout(resolve, 800)); // Show each step for 800ms
+                } else {
+                    // Final result - add to accumulated and then show final response
+                    accumulatedSteps.push({
+                        name: stepName,
+                        content: step.content
+                    });
+                    updateThinkingStepsAccumulated(thinkingElement, accumulatedSteps);
+                    
+                    // Wait a moment to show the complete thought process
+                    await new Promise(resolve => setTimeout(resolve, 1200));
+                    
+                    // Remove thinking loader and show final response
+                    removeThinkingLoader(thinkingElement);
+                    addMessage('assistant', step.content);
+                    isThinking = false;
+                    sendButton.disabled = false;
+                    messageInput.disabled = false;
+                    messageInput.focus();
+                }
+            }
+        }
+
+        function updateThinkingStepsAccumulated(thinkingElement, accumulatedSteps) {
+            const thinkingDiv = thinkingElement.querySelector('.thinking-content');
+            if (thinkingDiv) {
+                let stepsHtml = '';
+                
+                accumulatedSteps.forEach((step, index) => {
+                    const isLatest = index === accumulatedSteps.length - 1;
+                    const opacity = isLatest ? 'opacity-100' : 'opacity-70';
+                    const truncatedContent = step.content.length > 120 ? 
+                        step.content.substring(0, 120) + '...' : step.content;
+                    
+                    stepsHtml += `
+                        <div class="mb-2 ${opacity} ${isLatest ? 'animate-fadeIn' : ''}">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-yellow-400 font-semibold text-xs">${step.name}</span>
+                                ${isLatest ? '<div class="thinking-dots ml-1"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>' : ''}
+                            </div>
+                            <div class="text-gray-300 text-xs italic pl-4 border-l-2 border-yellow-400/30">${truncatedContent}</div>
+                        </div>
+                    `;
+                });
+                
+                thinkingDiv.innerHTML = stepsHtml;
+                scrollToBottom();
+            }
+        }
+
         function addThinkingLoader() {
             if (welcomeMessage) welcomeMessage.style.display = 'none';
             const messageDiv = document.createElement('div');
             messageDiv.className = 'flex justify-start animate-fadeIn';
             messageDiv.id = 'thinking-loader';
             const contentDiv = document.createElement('div');
-            contentDiv.className = 'max-w-2xl px-4 py-3 rounded-lg bg-red-900/20 border border-red-500/50';
+            contentDiv.className = 'max-w-xs sm:max-w-2xl px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-red-900/20 border border-red-500/50';
             const header = document.createElement('div');
-            header.className = 'flex items-center space-x-2 mb-1';
+            header.className = 'flex items-center space-x-2 mb-2';
             header.innerHTML = `<i data-lucide="cpu" class="w-4 h-4 text-red-400"></i><span class="text-xs text-red-400 font-semibold">STARK AI</span>`;
             contentDiv.appendChild(header);
+            
             const thinkingDiv = document.createElement('div');
-            thinkingDiv.className = 'flex items-center space-x-2';
-            thinkingDiv.innerHTML = `<i data-lucide="brain" class="w-4 h-4 text-yellow-400 animate-pulse"></i><span class="thinking-text">Thinking</span><div class="thinking-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>`;
+            thinkingDiv.className = 'thinking-content';
+            thinkingDiv.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="brain" class="w-4 h-4 text-yellow-400 animate-pulse"></i>
+                    <span class="thinking-text text-sm">Initializing genius-level processing</span>
+                    <div class="thinking-dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+                </div>
+            `;
             contentDiv.appendChild(thinkingDiv);
             messageDiv.appendChild(contentDiv);
             chatMessages.appendChild(messageDiv);
